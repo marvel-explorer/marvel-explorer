@@ -26,6 +26,7 @@ pyvenv.cfg
 *.egg-info/
 .installed.cfg
 *.egg
+secrets.sh
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
