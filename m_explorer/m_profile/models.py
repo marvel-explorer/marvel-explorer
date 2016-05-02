@@ -24,7 +24,6 @@ class MarvelProfile(models.Model):
         default='',
         max_length=255)
     bio = models.TextField(default='')
-    comics = models.ManyToManyField(Comic)
 
     objects = models.Manager()
     active = ActiveUserManager()
