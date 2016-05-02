@@ -4,6 +4,7 @@ import requests
 import io
 import re
 import sys
+import os.path
 
 MARVEL_UNIVERSE_DOMAIN = 'http://marvel.com/universe'
 CHARACTER = '/Black_Widow_(Natasha_Romanova)'
@@ -26,8 +27,9 @@ def write_file(html, name):
 
 def load_page(name):
     """Return html page from file."""
-    content, encoding = get_page()
-    write_file(content.decode(encoding), name)
+    if not os.path.isfile(name):
+        content, encoding = get_page()
+        write_file(content.decode(encoding), name)
     file = io.open(name, "r")
     return file
 
