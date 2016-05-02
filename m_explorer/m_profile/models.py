@@ -12,10 +12,10 @@ class ActiveUserManager(models.Manager):
 
 @python_2_unicode_compatible
 class MarvelProfile(models.Model):
-    '''
+    """
     User profile model attached to Django's
     built-in User model
-    '''
+    """
     user = models.OneToOneField(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
@@ -39,13 +39,3 @@ class MarvelProfile(models.Model):
         is active, return False if inactive.
         """
         return self.user.is_active
-
-    # def follow(self, target):
-    #     profile = MarvelProfile.objects.get(
-    #         user__username__exact=target)
-    #     self.following.add(profile)
-
-    # def unfollow(self, target):
-    #     profile = MarvelProfile.objects.get(
-    #         user__username__exact=target)
-    #     self.following.remove(profile)

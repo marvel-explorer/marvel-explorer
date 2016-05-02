@@ -6,7 +6,8 @@ from django.conf import settings
 @python_2_unicode_compatible
 class ReadingList(models.Model):
     """
-    The model for a user's list of comics to be read.
+    The model for a user's list of comics
+    to be read.
     """
     owner = models.ForeignKey(
         settings.AUTH_USER_MODEL,
@@ -31,6 +32,7 @@ class Comic(models.Model):
     """
     marvel_id = models.IntigerField()
     title = models.CharField()
+    characters = models.ManyToManyField(Character)
     issue_number = models.IntigerField()
     description = models.CharField()
     isbn = models.CharField()
