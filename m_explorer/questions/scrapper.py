@@ -51,4 +51,6 @@ if __name__ == '__main__':
         html = get_page()
     doc = parse_source(html)
     doc = extract_marvel_u_data(doc)
-    print(doc.find_all('p'))
+    p_tags = doc.find_all('p')
+    for p in p_tags:
+        print(p.b.text)
