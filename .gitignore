@@ -20,6 +20,9 @@ lib64/
 parts/
 sdist/
 var/
+bin/
+pip-selfcheck.json
+pyvenv.cfg
 *.egg-info/
 .installed.cfg
 *.egg
