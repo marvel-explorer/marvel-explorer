@@ -20,3 +20,8 @@ class Character(models.Model):
     powers = models.CharFild(max_length=200, blank=True)
     comics = models.CharField(max_length=250)
     series = models.CharField(max_length=250)
+    golden = models.NullBooleanField()
+    silver = models.NullBooleanField()
+    bronze = models.NullBooleanField()
+    dark = models.NullBooleanField()
+    modern = models.NullBooleanField()
