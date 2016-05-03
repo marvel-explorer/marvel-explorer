@@ -39,10 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
-    'rest_auth',
-    'allauth',
-    'allauth.account',
-    'rest_auth.registration',
+    'm_profile.apps.MProfileConfig'
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -76,6 +73,14 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'm_explorer.wsgi.application'
 
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    )
+}
 
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases

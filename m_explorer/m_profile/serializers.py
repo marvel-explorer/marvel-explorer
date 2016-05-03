@@ -1,8 +1,8 @@
 from rest_framework import serializers
-from m_profile.models import MarvelProfile
+from django.contrib.auth.models import User
 
 
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
-        model = MarvelProfile
-        fields = ()
+        model = User
+        fields = ('username', 'password', 'email')
