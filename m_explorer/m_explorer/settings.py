@@ -38,6 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'm_comics',
+    'm_proffile', 
+    'questions'
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -76,10 +79,14 @@ WSGI_APPLICATION = 'm_explorer.wsgi.application'
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+   'default': {
+       'ENGINE': 'django.db.backends.postgresql',
+       'NAME': 'm_explorerdb',
+       'USER': '',
+       'PASSWORD': '',
+       'HOST': '127.0.0.1',
+       'PORT': '5432',
+   }
 }
 
 
@@ -107,7 +114,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'US/Pacific'
 
 USE_I18N = True
 
