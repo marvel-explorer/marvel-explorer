@@ -1,10 +1,13 @@
 """Scrapper to produce character information."""
 from bs4 import BeautifulSoup
+from marvel.marvel import Marvel
 import requests
 import io
 import re
 import sys
+import os
 import os.path
+import string
 
 MARVEL_UNIVERSE_DOMAIN = 'http://marvel.com/universe/'
 
@@ -15,7 +18,7 @@ def character_list(text_file):
         char_list = file.read().splitlines()
     return char_list
 
-CHARACTER = character_list('characters.txt')
+CHARACTER = character_list('api_characters.txt')
 
 
 def get_page(character):
@@ -112,6 +115,55 @@ def div_components_marvelu(html):
             continue
     return div_dict
 
+
+def api_character_calls():
+    """Call character lists from marvel."""
+    m = Marvel(os.environ.get('PUBLIC_KEY'), os.environ.get('PRIVATE_KEY'))
+    log = open("api.log", "a")
+    api = open("api_characters.txt", "a")
+    calls = string.letters[26:]
+    dict_list = []
+    for letter in calls:
+        try:
+            call = m.get_characters(nameStartsWith=letter, limit="100")
+            log.write("{}:\n".format(letter))
+            log.write("Code Status:{}:\n".format(call.code))
+            log.write("Total:{}:\n".format(call.data.total))
+            for char in call.data.results:
+                individual = {}
+                if char.comics.available != 0:
+                    api.write("{}\n".format(char.name.encode('ascii', 'ignore')))
+                    individual.setdefault('marvel_name', []).append(char.name)
+                    individual.setdefault('marvel_id', []).append(char.id)
+                    individual.setdefault('total_comics', []).append(char.comics.available)
+                    individual.setdefault('description', []).append(char.description)
+                    individual.setdefault('thumbnail', []).append(char.thumbnail)
+                    dict_list.append(individual)
+        except KeyError:
+            log.write("failed:{} - SERVER ERROR\n".format(letter))
+            offset = 0
+            trip = False
+            while not trip:
+                call = m.get_characters(nameStartsWith=letter, limit="5", offset=offset)
+                try:
+                    for char in call.data.results:
+                        individual = {}
+                        if char.comics.available != 0:
+                            api.write("{}\n".format(char.name.encode('ascii', 'ignore')))
+                            individual.setdefault('marvel_name', []).append(char.name)
+                            individual.setdefault('marvel_id', []).append(char.id)
+                            individual.setdefault('total_comics', []).append(char.comics.available)
+                            individual.setdefault('description', []).append(char.description)
+                            individual.setdefault('thumbnail', []).append(char.thumbnail)
+                            dict_list.append(individual)
+                    if offset > call.data.total:
+                        trip = True
+                except KeyError:
+                    pass
+                offset += 5
+        print(dict_list)
+
+
 if __name__ == '__main__':
     for person in CHARACTER:
         doc = marvel_u_call(person.replace(" ", "_"))
@@ -120,3 +172,5 @@ if __name__ == '__main__':
             ds = div_components_marvelu(doc)
             ps.update(ds)
             print(ps)
+    # api_character_calls()
+    
