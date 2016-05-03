@@ -17,6 +17,5 @@ class Character(models.Model):
     race = models.CharField(max_length=70, blank=True)
     nationality = models.CharField(max_length=90, blank=True)
     occupation = models.CharField(max_length=200, blank=True)
-    powers = models.CharFild(max_length=200, blank=True)
-    comics = models.CharField(max_length=250)
+    powers = models.CharField(max_length=200, blank=True)
     series = models.CharField(max_length=250)
