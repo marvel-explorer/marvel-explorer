@@ -195,7 +195,7 @@ def combine_dicts():
     sc_dict_list = marvel_u_dict_production()
     results = []
     for i in api_dict_list:
-        api_dict_list[i].update(sc_dict_list)
+        api_dict_list[i].update(sc_dict_list[i])
         results.append(api_dict_list)
     combined = open("combined.txt", "w")
     combined.write(results)
@@ -205,5 +205,3 @@ def combine_dicts():
 
 if __name__ == '__main__':
     full_dict_list = combine_dicts()
-
-    
