@@ -10,15 +10,15 @@ class Comic(models.Model):
     Comic model for individual comics saved
     to the user's coimc list model
     """
-    marvel_id = models.IntigerField(primary_key=True)
+    marvel_id = models.IntegerField(primary_key=True)
     title = models.CharField(max_length=255)
     characters = models.ManyToManyField(Character, related_name='comics')
-    issue_number = models.PositiveIntigerField(null=True)
+    issue_number = models.PositiveIntegerField(null=True)
     description = models.CharField(max_length=255, default='')
     isbn = models.CharField(max_length=50, null=True)
-    page_count = models.IntigerField(null=True)
+    page_count = models.IntegerField(null=True)
     url = models.URLField(max_length=255)
-    series = models.IntigerField()
+    series = models.IntegerField()
     purchase = models.URLField(max_length=255)
     read = models.BooleanField(default=False)
     purchase_date = models.DateTimeField()
