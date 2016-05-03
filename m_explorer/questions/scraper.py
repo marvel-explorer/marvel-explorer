@@ -167,9 +167,9 @@ def api_character_calls():
         return dict_list
 
 
-
-if __name__ == '__main__':
-    tested = False
+def marvel_u_dict_production():
+    """Create attribute dicts from maruvel U."""
+    dict_list = []
     for person in CHARACTER:
         doc = marvel_u_call(person.replace(" ", "_"))
         if not doc:
@@ -180,6 +180,30 @@ if __name__ == '__main__':
             ps = p_components_marvelu(doc)
             ds = div_components_marvelu(doc)
             ps.update(ds)
-            print(ps)
-    # api_character_calls()
+            dict_list.append(ps)
+        else:
+            dict_list.append(dict())
+    results = open("s_results.txt", "w")
+    results.write(dict_list)
+    results.close()
+    return dict_list
+
+
+def combine_dicts():
+    """Combine API dicts with marvelU dicts."""
+    api_dict_list = api_character_calls()
+    sc_dict_list = marvel_u_dict_production()
+    results = []
+    for i in api_dict_list:
+        api_dict_list[i].update(sc_dict_list)
+        results.append(api_dict_list)
+    combined = open("combined.txt", "w")
+    combined.write(results)
+    combined.close()
+    return results
+
+
+if __name__ == '__main__':
+    full_dict_list = combine_dicts()
+
     
