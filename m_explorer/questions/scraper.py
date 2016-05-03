@@ -7,7 +7,15 @@ import sys
 import os.path
 
 MARVEL_UNIVERSE_DOMAIN = 'http://marvel.com/universe/'
-CHARACTER = ['She-Hulk', 'Black Widow']
+
+
+def character_list(text_file):
+    """Translate a text_file into a list of characters to search."""
+    with open(text_file) as file:
+        char_list = file.read().splitlines()
+    return char_list
+
+CHARACTER = character_list('characters.txt')
 
 
 def get_page(character):
@@ -21,7 +29,7 @@ def get_page(character):
 def write_file(html, name):
     "Write the response html to file"
     file = open(name, "w")
-    file.write(html)
+    file.write(html.encode('ascii', 'ignore'))
     file.close()
 
 
@@ -42,28 +50,28 @@ def parse_source(html):
 
 def extract_marvel_u_data(html):
     """Extract div of correct id from marvl u."""
+    log = open("search.log", "a")
     div_finder = html.find('div', id='powerbox')  # May need to invoke alternate search
     if div_finder:
+        log.write("Found:{}.format\n".format(str(html.title)))
         return div_finder
     else:
-        log = open("fail.log", "w")
         try:
             div_finder = html.find('div', {'class': 'gallerytext'})
             char_link = div_finder.a.get('href').split('/')[-1]
+            log.write("Found:{}.format\n".format(str(html.title)))
             return marvel_u_call(char_link)
         except:
-            log.write("Failed to find:{}".format(str(html.title)))
-        finally:
-            log.close()
+            log.write("Failed to find:{}\n".format(str(html.title)))
 
 
 def marvel_u_call(character):
     """Initial controller for call before tag isolation."""
-    if len(sys.argv) > 1 and sys.argv[1] == 'test':
-        html = load_page(character + '.html')
-    else:
-        html = get_page(character)
-    doc = parse_source(html)
+    # if len(sys.argv) > 1 and sys.argv[1] == 'test':
+    #     html = load_page(character + '.html')
+    # else:
+    html, encoding = get_page(character)
+    doc = parse_source(html.decode(encoding))
     doc = extract_marvel_u_data(doc)
     return doc
 
