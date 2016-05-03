@@ -1,0 +1,37 @@
+Marvel-Explorer Use Cases:
+
+User(front-end devv) use cases:
+1. I would want clear api documentation to know how to make a request.  - Under 3 hours to get this going
+2. I would want Correctly formatted JSON reponses from the API - 1-2 days
+3. I would want clean data with clearlly nulled fields (if any) for integrity holes. - Under 2 hours
+4. I want to be able to have multiple filtered calls to customize the response. - 1 day
+
+
+Developer Use Cases:
+1. I would want Secure access to the API to control who can make a request.  - Under 8 hours
+2. I would want an api that does not require a lot of maintenance - The entire week!!
+3. I want an api that is scalable and grow with marvels database to update information - Under 8 hours
+4. I want a scalable front end so we can keep on working after the project.  - N/A
+5. As a developer I want a site that is secure against various types of injection or request forgeries etc.. - Under 6 hours
+6. I want to make my own database based off info from marvel API - 1 day
+7. I want to deploy to AWS. - 8 hours
+8. I want one step deployment to automate the AWS. - 8 hours
+9. I want to be able to easily discern which of my fields have null entries. - 4 hours 
+10. I want good tests that make sure the functions within the API do what they are suposed to do. - All FREAKING WEEK ALL THE TIME!
+
+
+PRIORTY listing:
+10. I want good tests that make sure the functions within the API do what they are suposed to do. - All FREAKING WEEK ALL THE TIME!
+7. I want to deploy to AWS. - 8 hours
+8. I want one step deployment to automate the AWS. - 8 hours
+6. I want to make my own database based off info from marvel API - 1 day
+2. I would want Correctly formatted JSON reponses from the API - 1-2 days
+1. I would want clear api documentation to know how to make a request.  - Under 3 hours to get this going
+5. As a developer I want a site that is secure against various types of injection or request forgeries etc.. - Under 6 hours
+2. I would want an api that does not require a lot of maintenance - The entire week!!
+4. I want to be able to have multiple filtered calls to customize the response. - 1 day
+1. I would want Secure access to the API to control who can make a request.  - Under 8 hours
+3. I would want clean data with clearlly nulled fields (if any) for integrity holes. - Under 2 hours
+3. I want an api that is scalable and grow with marvels database to update information - Under 8 hours
+9. I want to be able to easily discern which of my fields have null entries. - 4 hours 
+4. I want a scalable front end so we can keep on working after the project.  - N/A
