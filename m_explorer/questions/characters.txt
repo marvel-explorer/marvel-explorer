@@ -17,7 +17,7 @@ Human Torch
 Iceman
 Professor X
 Colossus
-Winter Soldier
+WinterSoldier
 Doctor Strange
 Storm
 Jean Grey

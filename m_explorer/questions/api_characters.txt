@@ -81,9 +81,6 @@ Black Knight (Sir Percy of Scandia)
 Black Panther
 Black Panther (Ultimate)
 Black Tarantula
-Black Tom
-Black Widow
-Black Widow (Ultimate)
 Blackheart
 Blackout
 Blade
@@ -92,6 +89,11 @@ Blazing Skull
 Blink
 Blizzard
 Blob
+Blob (Ultimate)
+Blockbuster
+Blok
+Bloke
+Blonde Phantom
 Bloodaxe
 Bloodscream
 Bloodstorm
@@ -151,18 +153,10 @@ Chronomancer
 ClanDestine
 Clea
 Clea (Ultimate)
-Cloak
-Cloud 9
-Cobalt Man
-Colleen Wing
 Colossus
 Colossus (Ultimate)
 Confederates of the Curious
 Constrictor
-Contessa (Vera Vidal)
-Controller
-Corsair
-Cosmo (dog)
 Count Nefaria
 Countess
 Crimson Dynamo
@@ -222,9 +216,6 @@ Donald Blake
 Doomsday Man
 Doop
 Doorman
-Dormammu
-Dormammu (Ultimate)
-Dracula
 Dragon Lord
 Dragon Man
 Drax
@@ -278,15 +269,16 @@ Force Works
 Forearm
 Forge
 Forge (Ultimate)
+Frankenstein's Monster
+Franklin Richards
+Freak
+Frightful Four
 Frog Thor
 Frog-Man
 Galactus
 Gambit
 Gamora
 Gargoyle
-Garrison Kane
-Gateway
-Gauntlet (Joseph Green)
 Generation X
 Genesis
 George Stacy (Ultimate)
@@ -326,11 +318,6 @@ Hawkeye (Kate Bishop)
 Hawkeye (Ultimate)
 Hedge Knight
 Hellcat (Patsy Walker)
-Hellfire Club
-Hellfire Club (Ultimate)
-Hellion
-Hellions (Squad)
-Hemingway
 Henry Peter Gyrich
 Hepzibah
 Hercules
@@ -338,6 +325,8 @@ Heroes For Hire
 High Evolutionary
 Hiroim
 Hitman
+Hobgoblin (Roderick Kingsley)
+Holocaust (Age of Apocalypse)
 Hope Summers
 Howard The Duck
 Hulk
@@ -376,7 +365,6 @@ Iron Lad
 Iron Man
 Iron Man (Ultimate)
 Iron Patriot (James Rhodes)
-J. Jonah Jameson
 Jackal
 Jackpot
 Jamie Braddock
@@ -432,21 +420,11 @@ Lifeguard
 Lightning Lords of Nepal
 Lightspeed
 Lila Cheney
-Lilandra
-Lilith
-Lily Hollister
-Living Lightning
 Living Mummy
 Living Tribunal
 Liz Osborn
 Lizard
 Lizard (Ultimate)
-Loa
-Lockheed
-Lockjaw
-Loki
-Loners
-Longshot
 Lords of Avalon
 Lucky Pierre
 Luke Cage
@@ -457,16 +435,9 @@ M.O.D.O.K.
 Mach IV
 Machine Man
 Mad Thinker
-Madame Masque
-Maddog
-Madelyne Pryor
 Madrox
 Maelstrom
 Magdalene
-Maggott
-Magik (Amanda Sefton)
-Magik (Illyana Rasputin)
-Magma (Amara Aquilla)
 Magneto
 Magneto (Age of Apocalypse)
 Magneto (House of M)
@@ -495,6 +466,9 @@ Mary Jane Watson (Ultimate)
 Masked Marvel (Unrevealed)
 Masque
 Master Chief
+Master Mold
+Mastermind
+Masters of Evil
 Mauler
 Menace
 Mentallo
@@ -508,9 +482,6 @@ Micromax
 Miek
 Millie the Model
 Mimic
-Miss America
-Mister Fear
-Mister Sinister
 Misty Knight
 Mockingbird
 Moira MacTaggert
@@ -534,9 +505,6 @@ Mr. Fantastic
 Mr. Fantastic (Ultimate)
 Mr. Fixit
 Mr. Hyde
-Mr. Immortal
-Mr. Negative
-Mr. X
 Ms. Marvel (Kamala Khan)
 Multiple Man
 MVP
@@ -550,15 +518,8 @@ Namora
 Namorita
 Nebula
 Nemesis
-New Mutants
-New Warriors
-Newton Destine
 Nick Fury
 Nick Fury (Ultimate)
-Nico Minoru
-Nicolaos
-Night Thrasher
-Nightcrawler
 Nightcrawler (Ultimate)
 Nighthawk
 Nightmare
@@ -576,9 +537,6 @@ Odin
 Ogun
 Old Lace
 Omega Flight
-Omega Red
-Omega the Unknown
-Onslaught
 Oracle
 Ord
 Orphan
@@ -625,9 +583,6 @@ Quasimodo
 Quicksilver
 Quicksilver (Age of Apocalypse)
 Quicksilver (Ultimate)
-Rachel Grey
-Radioactive Man
-Rage
 Randall
 Randall Flagg
 Random
@@ -645,12 +600,6 @@ Redwing
 Reptil
 Retro Girl
 Rhino
-Rhodey
-Rick Jones
-Rictor
-Riptide
-Risque
-Robbie Robertson
 Rogue
 Rogue (Age of Apocalypse)
 Rogue (Ultimate)
@@ -679,11 +628,6 @@ Scorpion (Carmilla Black)
 Scorpion (Ultimate)
 Scourge
 Screwball
-Sebastian Shaw
-Secret Warriors
-Selene
-Senator Kelly
-Sentinel
 Sentinels
 Sentry (Robert Reynolds)
 Ser Duncan
@@ -713,8 +657,6 @@ Silver Samurai (Age of Apocalypse)
 Silver Surfer
 Silverclaw
 Silvermane
-Sin
-Sinister Six
 Skaar
 Skin
 Skrulls
@@ -731,9 +673,6 @@ Spectrum
 Speed
 Speed Demon
 Spencer Smythe
-Spider-Girl (Anya Corazon)
-Spider-Girl (May Parker)
-Spider-Ham (Larval Earth)
 Spider-Man
 Spider-Man (1602)
 Spider-Man (2099)
@@ -764,6 +703,9 @@ Stepford Cuckoos
 Steve Rogers
 Stick
 Stingray (Walter Newell)
+Storm
+Storm (Age of Apocalypse)
+Storm (Ultimate)
 Stranger
 Strong Guy
 Stryfe
@@ -781,12 +723,6 @@ Swordsman (Jaques Duquesne)
 Synch
 Tag
 Talisman (Elizabeth Twoyoungmen)
-Tana Nile
-Tarantula (Luis Alvarez)
-Tarot
-Taskmaster
-Tempest
-Terrax
 Texas Twister
 Thaddeus Ross
 Thanos
@@ -814,17 +750,9 @@ Thundra
 Tiger Shark
 Tiger's Beautiful Daughter
 Tigra (Greer Nelson)
-Titania
-Titanium Man (Topolov)
-Toad
-Toad Men
 Tombstone
 Toro (Thomas Raymond)
 Toxin
-Toxin (Eddie Brock)
-Trauma
-Triathlon
-Triton
 True Believers
 Turbo
 Tusk
@@ -860,9 +788,6 @@ Venus (Siren)
 Venus Dee Milo
 Vermin (Edward Whelan)
 Vertigo (Savage Land Mutate)
-Victor Mancha
-Vin Gonzales
-Vindicator
 Viper
 Vision
 Vivisector
@@ -881,8 +806,6 @@ Wendell Rand
 Wendigo
 Werewolf By Night
 Whiplash (Mark Scarlotti)
-Whirlwind
-White Tiger (Angela Del Toro)
 Whizzer (Stanley Stewart)
 Wiccan
 Wild Child
@@ -896,10 +819,6 @@ Wolfpack
 Wolfsbane
 Wolverine
 Wolverine (Ultimate)
-Wonder Man
-Wong
-Wong (Ultimate)
-Wraith
 Wrecker
 Wrecking Crew
 X-23

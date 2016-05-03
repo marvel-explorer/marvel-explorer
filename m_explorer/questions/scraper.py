@@ -161,10 +161,10 @@ def api_character_calls():
                 except KeyError:
                     pass
                 offset += 5
-        results = open("api_results.txt", "w")
-        results.write(dict_list)
-        results.close()
-        return dict_list
+    results = open("api_results.txt", "w")
+    results.write("{}\n".format(str(dict_list).encode('ascii', 'ignore')))
+    results.close()
+    return dict_list
 
 
 def marvel_u_dict_production():
@@ -182,9 +182,9 @@ def marvel_u_dict_production():
             ps.update(ds)
             dict_list.append(ps)
         else:
-            dict_list.append(dict())
+            dict_list.append({})
     results = open("s_results.txt", "w")
-    results.write(dict_list)
+    results.write(str(dict_list).encode('ascii', 'ignore'))
     results.close()
     return dict_list
 
@@ -194,11 +194,11 @@ def combine_dicts():
     api_dict_list = api_character_calls()
     sc_dict_list = marvel_u_dict_production()
     results = []
-    for i in api_dict_list:
-        api_dict_list[i].update(sc_dict_list[i])
-        results.append(api_dict_list)
+    for index, value in enumerate(api_dict_list):
+        combo = api_dict_list[index].update(sc_dict_list[index])
+        results.append(combo)
     combined = open("combined.txt", "w")
-    combined.write(results)
+    combined.write(str(results).encode('ascii', 'ignore'))
     combined.close()
     return results
 
