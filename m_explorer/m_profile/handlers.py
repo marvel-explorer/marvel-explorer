@@ -4,6 +4,7 @@ from django.db.models.signals import post_save
 from django.db.models.signals import pre_delete
 from django.dispatch import receiver
 from m_profile.models import MarvelProfile
+from m_comics.models import ReadingList
 from rest_framework.authtoken.models import Token
 import logging
 
@@ -12,7 +13,6 @@ logger = logging.getLogger(__name__)
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
 def create_user_profile(sender, **kwargs):
-    import pdb; pdb.set_trace()
     if kwargs.get('created', False):
         instance = kwargs.get('instance', None)
         if instance is not None:
@@ -25,13 +25,16 @@ def create_user_profile(sender, **kwargs):
 
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
-def create_auth_token(sender, instance=None, created=False, **kwargs):
+def create_auth_token(sender, **kwargs):
+    instance = kwargs.get('instance', None)
+    created = kwargs.get('created', None)
     if created:
         Token.objects.create(user=instance)
 
 
 @receiver(pre_delete, sender=settings.AUTH_USER_MODEL)
-def remove_user_profile(sender, instance=None, created=False, **kwargs):
+def remove_user_profile(sender, **kwargs):
+    instance = kwargs.get('instance', None)
     try:
         instance.profile.delete()
     except (KeyError, AttributeError):
