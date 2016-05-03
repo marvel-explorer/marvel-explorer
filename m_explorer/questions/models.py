@@ -12,6 +12,9 @@ class CharacterManager(models.Manager):
         qs = super(CharacterManager, self).get_queryset()
         return qs.all()
 
+    def __str__(self):
+        return self.title
+
 
 @python_2_unicode_compatible
 class Character(models.Model):
@@ -28,7 +31,7 @@ class Character(models.Model):
     # race = models.CharField(max_length=70, blank=True) # wikipedia stretch
     citizenship = models.CharField(max_length=90, null=False, blank=True) # I have
     occupation = models.CharField(max_length=200, null=False, blank=True) # I have
-    powers = models.CharFild(max_length=200, null=False, blank=True) # wikipedia stretch
+    powers = models.CharField(max_length=200, null=False, blank=True) # wikipedia stretch
     total_comics = models.IntegerField()  # api
     golden = models.NullBooleanField() # api analysis
     silver = models.NullBooleanField() # api analysis
