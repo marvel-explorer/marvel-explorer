@@ -1,8 +1,8 @@
-from django.conf.urls import url, include
-from .views import UserList, UserDetail
+from django.conf.urls import url
+from .views import CreateUser, UpdateUser, UserComics
 
 urlpatterns = [
-    url(r'^/$', UserList.as_view()),
-    url(r'^/(?P<pk>[0-9]+)/$', UserDetail.as_view()),
-    url(r'^/(?P<pk>[0-9]+)/comics$', UserComics.as_view()),
+    url(r'^new$', CreateUser.as_view()),
+    url(r'^(?P<pk>[0-9]+)$', UpdateUser.as_view()),
+    url(r'^(?P<pk>[0-9]+)/comics$', UserComics.as_view()),
 ]
