@@ -2,6 +2,7 @@
 """Clean the scrapper and API results."""
 from s_results import s_results
 from api_results import api_results
+from models import Character
 
 
 def combine_results():
@@ -299,10 +300,45 @@ def cleaning_dicts(to_clean):
     return cleaned
 
 
-
-
+def fill_the_db(cleaned):
+    """Create and save characters to the database."""
+    for c in cleaned:
+        character = Character(
+            name=c['name'],
+            real_name=c['Real Name'],
+            marvel_name=c['marvel_name'],
+            marvel_id=c['marvel_id'],
+            description=c['description'],
+            thumbnail=c['thumbnail'],
+            gender=c['gender'],
+            pob=c['Place of Birth'],
+            citizenship=c['Citizenship'],
+            occupation=c['Occupation'],
+            powers=c['Powers'],
+            total_comics=c['total_comics'],
+            golden=c['golden'],
+            silver=c['silver'],
+            bronze=c['bronze'],
+            dark=c['dark'],
+            modern=c['modern'],
+            hair=c['Hair'],
+            eyes=c['Eyes'],
+            first_appearance=c['First Appearance'],
+            identity_status=c['Identity'],
+            aliases=c['Aliases'],
+            weight=c['Weight'],
+            height=c['Height'],
+            group_aff=c['Group Affiliation'],
+            paraphernalia=c['Paraphernalia'],
+            education=c['Education'],
+            abilities=c['Abilities'],
+            weapons=c['Weapons'],
+            origin=c['Origin'],
+        )
+        character.save()
 
 
 if __name__ == '__main__':
     full_dict_list = combine_results()
     cleaning_dicts(full_dict_list)
+    fill_the_db(cleaning_dicts)
