@@ -264,13 +264,12 @@ def gender(to_clean):
     return to_clean
 
 
-
 def cleaning_dicts(to_clean):
     """Clean dicts to inject into database."""
     cleaned = []
     for d in to_clean:
         d['marvel_name'] = d['marvel_name'][0].replace('u2019', "'")
-        d['marvel_id'] = d['marvel_id'][0].replace('u2019', "'")
+        d['marvel_id'] = d['marvel_id'][0]
         d['description'] = d['description'][0].replace('u2019', "'")
         d['thumbnail'] = d['thumbnail'][0].replace('u2019', "'")
         d = pob_clean(d)
@@ -306,3 +305,4 @@ def cleaning_dicts(to_clean):
 
 if __name__ == '__main__':
     full_dict_list = combine_results()
+    cleaning_dicts(full_dict_list)
