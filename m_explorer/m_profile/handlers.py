@@ -11,14 +11,17 @@ logger = logging.getLogger(__name__)
 
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
-def create_user_profile(sender, instance=None, created=False, **kwargs):
+def create_user_profile(sender, **kwargs):
+    import pdb; pdb.set_trace()
     if kwargs.get('created', False):
-        try:
-            new_profile = MarvelProfile(user=instance)
-            new_profile.save()
-        except (KeyError, ValueError):
-            msg = 'Unable to create profile for specified user.'
-            logger.error(msg.format(instance))
+        instance = kwargs.get('instance', None)
+        if instance is not None:
+            try:
+                new_profile = MarvelProfile(user=instance)
+                new_profile.save()
+            except (KeyError, ValueError):
+                msg = 'Unable to create profile for specified user.'
+                logger.error(msg.format(instance))
 
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)

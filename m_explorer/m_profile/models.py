@@ -26,4 +26,4 @@ class MarvelProfile(models.Model):
     active = ActiveUserManager()
 
     def __str__(self):
-        return self.user
+        return str(self.user)
