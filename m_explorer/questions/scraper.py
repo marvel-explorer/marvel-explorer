@@ -165,8 +165,13 @@ def api_character_calls():
 
 
 if __name__ == '__main__':
+    tested = False
     for person in CHARACTER:
         doc = marvel_u_call(person.replace(" ", "_"))
+        if not doc:
+            name_reverse = person.split(" ")
+            if len(name_reverse) == 2:
+                doc = marvel_u_call(name_reverse[1] + ',_' + name_reverse[0])
         if doc:
             ps = p_components_marvelu(doc)
             ds = div_components_marvelu(doc)
