@@ -1,6 +1,7 @@
 """Scrapper to produce character information."""
 from bs4 import BeautifulSoup
 from marvel.marvel import Marvel
+from api_results import api_results
 import requests
 import io
 import re
@@ -181,8 +182,11 @@ def marvel_u_dict_production():
             ds = div_components_marvelu(doc)
             ps.update(ds)
             dict_list.append(ps)
+            print(ps)
         else:
-            dict_list.append({})
+            ps = {}
+            dict_list.append(ps)
+            print(ps)
     results = open("s_results.txt", "w")
     results.write(str(dict_list).encode('ascii', 'ignore'))
     results.close()
@@ -191,13 +195,13 @@ def marvel_u_dict_production():
 
 def combine_dicts():
     """Combine API dicts with marvelU dicts."""
-    api_dict_list = api_character_calls()
+    api_dict_list = api_results
     sc_dict_list = marvel_u_dict_production()
     results = []
     for index, value in enumerate(api_dict_list):
         combo = api_dict_list[index].update(sc_dict_list[index])
         results.append(combo)
-    combined = open("combined.txt", "w")
+    combined = open("combined.py", "w")
     combined.write(str(results).encode('ascii', 'ignore'))
     combined.close()
     return results
