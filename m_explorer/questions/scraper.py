@@ -161,7 +161,11 @@ def api_character_calls():
                 except KeyError:
                     pass
                 offset += 5
-        print(dict_list)
+        results = open("api_results.txt", "w")
+        results.write(dict_list)
+        results.close()
+        return dict_list
+
 
 
 if __name__ == '__main__':
