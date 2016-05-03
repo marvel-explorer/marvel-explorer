@@ -54,3 +54,6 @@ class Character(models.Model):
     origin = models.CharField(max_length=250, null=False, blank=True)
 
     objects = CharacterManager()
+
+    def __str__(self):
+        return self.name
