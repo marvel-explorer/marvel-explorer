@@ -1,7 +1,7 @@
 """URl routes for the character realated functions."""
 from django.conf.urls import url
-from .views import GetRandom20
+from .views import GetHeros
 
 urlpatterns = [
-    url(r'^$', GetRandom20.as_view()),
+    url(r'^$', GetHeros .as_view()),
 ]
