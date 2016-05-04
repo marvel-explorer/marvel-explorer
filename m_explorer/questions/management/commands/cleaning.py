@@ -346,10 +346,4 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         full_dict_list = combine_results()
         clean = cleaning_dicts(full_dict_list)
-        # import pdb; pdb.set_trace()
         fill_the_db(clean)
-
-# if __name__ == '__main__':
-#     full_dict_list = combine_results()
-#     cleaning_dicts(full_dict_list)
-#     fill_the_db(cleaning_dicts)
