@@ -11,4 +11,4 @@ class CharacterSerializer(serializers.ModelSerializer):
                   'dark', 'modern', 'hair', 'eyes', 'first_appearance',
                   'identity_status', 'aliases', 'weight', 'height',
                   'group_aff', 'paraphernalia', 'education', 'abilities',
-                  'weapons', 'orign')
+                  'weapons', 'origin')
