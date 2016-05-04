@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 from django.conf import settings
-from questions.models import Character
+# from questions.models import Character
 
 
 @python_2_unicode_compatible
@@ -10,7 +10,7 @@ class Comic(models.Model):
     Comic model for individual comics saved
     to the user's coimc list model
     """
-    characters = models.ManyToManyField(Character, related_name='comics')
+    characters = models.ManyToManyField('questions.Character', related_name='comics')
 
     marvel_id = models.IntegerField(primary_key=True)
     title = models.CharField(max_length=255)

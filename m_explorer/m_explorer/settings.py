@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'm_profile.apps.MProfileConfig',
     'm_comics',
-    'questions'
+    'questions.apps.QuestionsConfig',
 ]
 
 MIDDLEWARE_CLASSES = [
