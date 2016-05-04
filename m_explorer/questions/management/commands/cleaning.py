@@ -234,31 +234,35 @@ def name_clean(to_clean):
 def gender(to_clean):
     """Extract genders from filters."""
     if to_clean['Powers'] != '':
-        if ' her ' in to_clean['Powers'] or ' she ' in to_clean['Powers']:
+        searchable = to_clean['Powers'].lower()
+        if ' her ' in searchable or ' she ' in searchable:
             to_clean['gender'] = 'Female'
             return to_clean
-        elif ' his ' in to_clean['Powers'] or ' he ' in to_clean['Powers']:
+        elif ' his ' in searchable or ' he ' in searchable:
             to_clean['gender'] = 'Male'
             return to_clean
     if to_clean['Abilities'] != '':
-        if ' her ' in to_clean['Abilities'] or ' she ' in to_clean['Abilities']:
+        searchable = to_clean['Abilities'].lower()
+        if ' her ' in searchable or ' she ' in searchable:
             to_clean['gender'] = 'Female'
             return to_clean
-        elif ' his ' in to_clean['Abilities'] or ' he ' in to_clean['Abilities']:
+        elif ' his ' in searchable or ' he ' in searchable:
             to_clean['gender'] = 'Male'
             return to_clean
     if to_clean['Weapons'] != '':
-        if ' her ' in to_clean['Weapons'] or ' she ' in to_clean['Weapons']:
+        searchable = to_clean['Weapons'].lower()
+        if ' her ' in searchable or ' she ' in searchable:
             to_clean['gender'] = 'Female'
             return to_clean
-        elif ' his ' in to_clean['Weapons'] or ' he ' in to_clean['Weapons']:
+        elif ' his ' in searchable or ' he ' in searchable:
             to_clean['gender'] = 'Male'
             return to_clean
     if to_clean['Paraphernalia'] != '':
-        if ' her ' in to_clean['Paraphernalia'] or ' she ' in to_clean['Paraphernalia']:
+        searchable = to_clean['Paraphernalia'].lower()
+        if ' her ' in searchable or ' she ' in searchable:
             to_clean['gender'] = 'Female'
             return to_clean
-        elif ' his ' in to_clean['Paraphernalia'] or ' he ' in to_clean['Paraphernalia']:
+        elif ' his ' in searchable or ' he ' in searchable:
             to_clean['gender'] = 'Male'
             return to_clean
     to_clean['gender'] = 'Unknown'

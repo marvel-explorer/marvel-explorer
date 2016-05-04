@@ -48,7 +48,6 @@ class Character(models.Model):
     group_aff = models.CharField(max_length=550, null=False, blank=True)
     paraphernalia = models.CharField(max_length=10000, null=False, blank=True)
     education = models.CharField(max_length=2000, null=False, blank=True)
-    occupation = models.CharField(max_length=1000, null=False, blank=True)
     abilities = models.CharField(max_length=10000, null=False, blank=True)
     weapons = models.CharField(max_length=10000, null=False, blank=True)
     origin = models.CharField(max_length=550, null=False, blank=True)
