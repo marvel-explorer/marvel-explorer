@@ -4,8 +4,15 @@ from .serializers import CharacterSerializer
 from rest_framework import generics
 
 
+class GetRandom20(generics.ListAPIView):
+    """Send JSON of a random 20 characters."""
+
+    queryset = Character.objects.all().exclude(powers='').order_by('?')
+    serializer_class = CharacterSerializer
+
+
 class GetHeros(generics.ListAPIView):
-    """Return the top 20 characters orderd by max."""
+    """Send JSON of all characters."""
 
     queryset = Character.objects.all()
     serializer_class = CharacterSerializer
