@@ -10,22 +10,25 @@ class Comic(models.Model):
     Comic model for individual comics saved
     to the user's coimc list model
     """
-    characters = models.ManyToManyField('questions.Character', related_name='comics')
-
+    characters = models.ManyToManyField('questions.Character',
+                                        related_name='comics')
     marvel_id = models.IntegerField(primary_key=True)
     title = models.CharField(max_length=255)
-    issue_number = models.PositiveIntegerField(null=True)
-    description = models.CharField(max_length=255, default='')
+    issue_number = models.PositiveIntegerField(default=0)
+    description = models.CharField(max_length=1000, default='')
     isbn = models.CharField(max_length=50, null=True)
     page_count = models.IntegerField(null=True)
-    url = models.URLField(max_length=255)
-    series = models.IntegerField()
-    purchase = models.URLField(max_length=255)
+    url = models.URLField(max_length=255, null=True)
+    series = models.IntegerField(null=True)
+    purchase = models.URLField(max_length=255, null=True)
     read = models.BooleanField(default=False)
-    purchase_date = models.DateTimeField()
+    purchase_date = models.CharField(max_length=50)
 
     def __str__(self):
         return self.title
+
+    class Meta:
+        ordering = ('read',)
 
 
 @python_2_unicode_compatible
