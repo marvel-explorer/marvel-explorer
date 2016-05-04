@@ -1,7 +1,8 @@
 from django.contrib.auth.models import User
-from m_profile.models import MarvelProfile
+from .models import MarvelProfile
+from .serializers import UserSerializer, ProfileSerializer
+from .permissions import IsOwnerPermission
 from m_comics.models import Comic
-from m_profile.serializers import UserSerializer, ProfileSerializer
 from m_comics.serializers import ComicSerializer
 from rest_framework import authentication
 from rest_framework import permissions
@@ -15,7 +16,7 @@ class CreateUser(generics.ListCreateAPIView):
 
 class UpdateUser(generics.RetrieveUpdateDestroyAPIView):
     authentication_classes = (authentication.TokenAuthentication,)
-    permission_classes = (permissions.IsAuthenticated,)
+    permission_classes = (permissions.IsAuthenticated, IsOwnerPermission)
 
     queryset = User.objects.all()
     serializer_class = UserSerializer
@@ -30,6 +31,14 @@ class UpdateProfile(generics.RetrieveUpdateDestroyAPIView):
 
 
 class UserComics(generics.ListCreateAPIView):
+    authentication_classes = (authentication.TokenAuthentication,)
+    permission_classes = (permissions.IsAuthenticated, IsOwnerPermission)
+
+    queryset = Comic.objects.all()
+    serializer_class = ComicSerializer
+
+
+class UpdateComics(generics.RetrieveUpdateDestroyAPIView):
     authentication_classes = (authentication.TokenAuthentication,)
     permission_classes = (permissions.IsAuthenticated,)
 
