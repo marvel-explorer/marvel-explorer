@@ -41,11 +41,13 @@ INSTALLED_APPS = [
     'm_profile.apps.MProfileConfig',
     'm_comics',
     'questions.apps.QuestionsConfig',
+    'corsheaders',
 ]
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -74,13 +76,13 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'm_explorer.wsgi.application'
 
+CORS_ORIGIN_ALLOW_ALL = True
+
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.config(
-        default=os.environ.get('DATABASE_URL')
-    )
+    'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
 }
 
 
