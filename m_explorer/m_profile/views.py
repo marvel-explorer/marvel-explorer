@@ -1,9 +1,7 @@
 from django.contrib.auth.models import User
 from .models import MarvelProfile
 from .serializers import UserSerializer, ProfileSerializer
-from .permissions import IsOwnerPermission
-from m_comics.models import Comic
-from m_comics.serializers import ComicSerializer
+from .permissions import IsObjectOwner
 from rest_framework import authentication
 from rest_framework import permissions
 from rest_framework import generics
@@ -15,32 +13,16 @@ class CreateUser(generics.ListCreateAPIView):
 
 
 class UpdateUser(generics.RetrieveUpdateDestroyAPIView):
-    authentication_classes = (authentication.TokenAuthentication,)
-    permission_classes = (permissions.IsAuthenticated, IsOwnerPermission)
+    authentication_classes = (authentication.TokenAuthentication)
+    permission_classes = (permissions.IsAuthenticated, IsObjectOwner)
 
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
 
 class UpdateProfile(generics.RetrieveUpdateDestroyAPIView):
-    authentication_classes = (authentication.TokenAuthentication,)
-    permission_classes = (permissions.IsAuthenticated,)
+    authentication_classes = (authentication.TokenAuthentication)
+    permission_classes = (permissions.IsAuthenticated, IsObjectOwner)
 
     queryset = MarvelProfile.objects.all()
     serializer_class = ProfileSerializer
-
-
-class UserComics(generics.ListCreateAPIView):
-    authentication_classes = (authentication.TokenAuthentication,)
-    permission_classes = (permissions.IsAuthenticated, IsOwnerPermission)
-
-    queryset = Comic.objects.all()
-    serializer_class = ComicSerializer
-
-
-class UpdateComics(generics.RetrieveUpdateDestroyAPIView):
-    authentication_classes = (authentication.TokenAuthentication,)
-    permission_classes = (permissions.IsAuthenticated,)
-
-    queryset = Comic.objects.all()
-    serializer_class = ComicSerializer
