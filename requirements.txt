@@ -1,5 +1,6 @@
 dj-database-url==0.4.1
 Django==1.9.5
+django-cors-headers==1.1.0
 django-rest-auth==0.7.0
 djangorestframework==3.3.3
 httpie==0.9.3
