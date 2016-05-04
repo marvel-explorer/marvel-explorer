@@ -208,7 +208,7 @@ def citizenship(to_clean):
     """Clean eyes."""
     if 'Citizenship' in to_clean:
         c = to_clean['Citizenship'][0].split(" ")
-        if c[0] == "U.S.A." or c[0] == "U.S.":
+        if c[0][:5] == "U.S.A" or c[0] == "U.S." or c[0] == "USA":
             c = "U.S.A."
         elif c[0] == "United" and c[1] == "States":
             c = "U.S.A."
