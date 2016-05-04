@@ -1,8 +1,8 @@
 # -*-encoding:utf-8 -*-
 """Clean the scrapper and API results."""
-from s_results import s_results
-from api_results import api_results
-from models import Character
+from ._s_results import s_results
+from ._api_results import api_results
+from django.core.management.base import BaseCommand, CommandError
 
 
 def combine_results():
@@ -14,7 +14,7 @@ def combine_results():
         results.append(result)
         print(result)
     combined = open("combined.py", "w")
-    combined.write(str(results).encode('ascii', 'ignore'))
+    combined.write(str(results))
     combined.close()
     return results
 
@@ -155,14 +155,14 @@ def height_clean(to_clean):
 
 def first_app_clean(to_clean):
     """Clean first appeance and get origin age."""
+    to_clean['golden'] = None
+    to_clean['silver'] = None
+    to_clean['bronze'] = None
+    to_clean['dark'] = None
+    to_clean['modern'] = None
     if 'First Appearance' in to_clean:
         to_clean['First Appearance'] = to_clean['First Appearance'][0]
         date = to_clean['First Appearance'].split(" ")[-1]
-        to_clean['golden'] = None
-        to_clean['silver'] = None
-        to_clean['bronze'] = None
-        to_clean['dark'] = None
-        to_clean['modern'] = None
         try:
             year = int(date[1:5])
             if 1920 < year <= 1955:
@@ -273,6 +273,7 @@ def cleaning_dicts(to_clean):
         d['marvel_id'] = d['marvel_id'][0]
         d['description'] = d['description'][0].replace('u2019', "'")
         d['thumbnail'] = d['thumbnail'][0].replace('u2019', "'")
+        d['total_comics'] = d['total_comics'][0]
         d = pob_clean(d)
         d = occ_clean(d)
         d = power_clean(d)
@@ -295,13 +296,14 @@ def cleaning_dicts(to_clean):
         d = gender(d)
         cleaned.append(d)
     clean_log = open("cleaned.py", "w")
-    clean_log.write(str(cleaned).encode('ascii', 'ignore'))
+    clean_log.write(str(cleaned))
     clean_log.close()
     return cleaned
 
 
 def fill_the_db(cleaned):
     """Create and save characters to the database."""
+    from questions.models import Character
     for c in cleaned:
         character = Character(
             name=c['name'],
@@ -338,7 +340,16 @@ def fill_the_db(cleaned):
         character.save()
 
 
-if __name__ == '__main__':
-    full_dict_list = combine_results()
-    cleaning_dicts(full_dict_list)
-    fill_the_db(cleaning_dicts)
+class Command(BaseCommand):
+    help = 'Loads characters into database'
+
+    def handle(self, *args, **options):
+        full_dict_list = combine_results()
+        clean = cleaning_dicts(full_dict_list)
+        # import pdb; pdb.set_trace()
+        fill_the_db(clean)
+
+# if __name__ == '__main__':
+#     full_dict_list = combine_results()
+#     cleaning_dicts(full_dict_list)
+#     fill_the_db(cleaning_dicts)
