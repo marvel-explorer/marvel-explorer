@@ -10,8 +10,10 @@ class Comic(models.Model):
     Comic model for individual comics saved
     to the user's coimc list model
     """
-    characters = models.ManyToManyField('questions.Character',
-                                        related_name='comics')
+    characters = models.ManyToManyField(
+        'questions.Character',
+        related_name='comics'
+    )
     marvel_id = models.IntegerField(primary_key=True)
     title = models.CharField(max_length=255)
     issue_number = models.PositiveIntegerField(default=0)
@@ -22,7 +24,7 @@ class Comic(models.Model):
     detail_url = models.URLField(max_length=255, null=True)
     series = models.CharField(max_length=500, null=True)
     purchase_url = models.URLField(max_length=255, null=True)
-    puchase_date = models.DateTimeField(null=True)
+    purchase_date = models.DateTimeField(null=True)
     str_pur_date = models.CharField(max_length=15, null=True)
     read = models.BooleanField(default=False)
     thumbnail = models.CharField(max_length=300, null=False, blank=True)
@@ -37,12 +39,29 @@ class ReadingList(models.Model):
     The model for a user's list of comics
     to be read.
     """
-    owner = models.OneToOneField(settings.AUTH_USER_MODEL,
-                                 on_delete=models.CASCADE,
-                                 related_name='readinglist')
-    comics = models.ManyToManyField(Comic, related_name='lists')
+    owner = models.OneToOneField(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name='readinglist'
+    )
+    comics = models.ManyToManyField(
+        Comic,
+        through='Membership'
+    )
     date_created = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return str(self.owner)
+
+
+class Membership(models.Model):
+    comic = models.ForeignKey(
+        Comic,
+        on_delete=models.CASCADE
+    )
+    readinglist = models.ForeignKey(
+        ReadingList,
+        on_delete=models.CASCADE
+    )
+    read = models.BooleanField(default=False)
