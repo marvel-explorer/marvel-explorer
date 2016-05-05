@@ -116,12 +116,6 @@ class NewUserUnsavedCase(TestCase):
         self.assertIsNone(self.antman.profile)
         self.assertIsNone(self.wasp.profile)
 
-    def test_unsaved_no_readinglist(self):
-        with self.assertRaises(self.DoesNotExist):
-            self.antman.readinglist
-        with self.assertRaises(self.DoesNotExist):
-            self.wasp.readinglist
-
     def test_unsaved_no_id(self):
         self.assertIsNone(self.antman.id)
         self.assertIsNone(self.wasp.id)

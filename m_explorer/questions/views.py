@@ -28,6 +28,6 @@ class ComicsByHeroAPIView(generics.ListAPIView):
         # serializer = ComicSerializer
         character = Character.objects.filter(marvel_id=kwargs['pk'])[0]
         comics = character.comics.all()
-        if len(comics) > character.total_comics:
+        if len(comics) < character.total_comics:
             api_call(kwargs['pk'])
         return Response({'comics': comics})
