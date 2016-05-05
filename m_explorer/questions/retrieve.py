@@ -24,9 +24,6 @@ def get_comics_by_character(character_id):
     return all_comics
 
 
-def
-
-
 def attach_character(c_dict):
     """Attach associated characters to a comic book entry."""
     c_list = c_dict.characters.items
