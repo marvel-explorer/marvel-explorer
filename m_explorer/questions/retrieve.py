@@ -59,6 +59,7 @@ def prep_comics(all_comics):
         c_dict['title'] = comic.title
         c_dict['issue_number'] = comic.issueNumber
         c_dict['description'] = comic.description
+        c_dict['thumbnail'] = comic.thumbnail
         c_dict['upc'] = comic.upc
         c_dict['page_count'] = comic.pageCount
         c_dict['format'] = comic.format
@@ -102,6 +103,7 @@ def fill_the_db(cleaned):
 
 def api_call(character_id):
     """Api to db entry main function."""
-    all_comics = get_comics_by_character("character_id")
+    # import pdb; pdb.set_trace()
+    all_comics = get_comics_by_character(character_id)
     preped = prep_comics(all_comics)
     fill_the_db(preped)
