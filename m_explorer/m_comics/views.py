@@ -8,12 +8,12 @@ from rest_framework import (
 from .models import Comic
 
 
-class UserComics(generics.ListCreateAPIView):
+class UserComics(generics.RetrieveUpdateDestroyAPIView):
     authentication_classes = (authentication.TokenAuthentication,)
     permission_classes = (permissions.IsAuthenticated, IsObjectOwner)
 
     queryset = Comic.objects.all()
     serializer_class = ComicSerializer
 
-    # def get_object(self):
-    #     return .objects.get(pk=self.request.user.pk)
+    def get_object(self):
+        return self.request.user.readinglist.comics
