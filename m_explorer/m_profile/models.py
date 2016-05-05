@@ -15,6 +15,8 @@ class MarvelProfile(models.Model):
     location = models.CharField(default='',
                                 max_length=255)
     bio = models.TextField(default='')
+    fav_hero = models.CharField(default='',
+                                max_length=100)
 
     def __str__(self):
         return str(self.user)
