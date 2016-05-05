@@ -19,4 +19,4 @@ class UserSerializer(serializers.ModelSerializer):
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = MarvelProfile
-        fields = ('bio', 'location')
+        fields = ('bio', 'location', 'fav_hero')
