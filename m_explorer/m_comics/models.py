@@ -12,7 +12,7 @@ class Comic(models.Model):
     """
     characters = models.ManyToManyField('questions.Character',
                                         related_name='comics')
-    marvel_id = models.CharField(max_length=20, primary_key=True)
+    marvel_id = models.IntegerField(primary_key=True)
     title = models.CharField(max_length=255)
     issue_number = models.PositiveIntegerField(default=0)
     description = models.CharField(max_length=1000, default='')
