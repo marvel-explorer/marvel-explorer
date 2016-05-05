@@ -19,25 +19,23 @@ class CharacterManager(models.Manager):
 @python_2_unicode_compatible
 class Character(models.Model):
     """Create Character Stats model for the database."""
-    name = models.CharField(max_length=6000, null=False, blank=True) # got it
-    real_name = models.CharField(max_length=100, null=False, blank=True) # got it
-    marvel_name = models.CharField(max_length=100, null=False, blank=True) # api
-    marvel_id = models.CharField(max_length=20, primary_key=True) # api
-    description = models.CharField(max_length=10000, null=False, blank=True) # api
-    thumbnail = models.CharField(max_length=1000, null=False, blank=True) # api
-    gender = models.CharField(max_length=30, null=False, blank=True) # create counting function
-    pob = models.CharField(max_length=6000, null=False, blank=True) # got it
-    # species = models.CharField(max_length=60, blank=True) # wikipedia stretch
-    # race = models.CharField(max_length=70, blank=True) # wikipedia stretch
-    citizenship = models.CharField(max_length=500, null=False, blank=True) # I have
-    occupation = models.CharField(max_length=6000, null=False, blank=True) # I have
-    powers = models.CharField(max_length=10000, null=False, blank=True) # wikipedia stretch
-    total_comics = models.IntegerField()  # api
-    golden = models.NullBooleanField() # api analysis
-    silver = models.NullBooleanField() # api analysis
-    bronze = models.NullBooleanField() # api analysis
-    dark = models.NullBooleanField() # api analysis
-    modern = models.NullBooleanField() # api analysis
+    name = models.CharField(max_length=6000, null=False, blank=True)
+    real_name = models.CharField(max_length=100, null=False, blank=True)
+    marvel_name = models.CharField(max_length=100, null=False, blank=True)
+    marvel_id = models.CharField(max_length=20, primary_key=True)
+    description = models.CharField(max_length=10000, null=False, blank=True)
+    thumbnail = models.CharField(max_length=1000, null=False, blank=True)
+    gender = models.CharField(max_length=30, null=False, blank=True)
+    pob = models.CharField(max_length=6000, null=False, blank=True)
+    citizenship = models.CharField(max_length=500, null=False, blank=True)
+    occupation = models.CharField(max_length=6000, null=False, blank=True)
+    powers = models.CharField(max_length=10000, null=False, blank=True)
+    total_comics = models.IntegerField(blank=True, null=False, default=None)
+    golden = models.NullBooleanField(blank=True, null=False, default=None)
+    silver = models.NullBooleanField(blank=True, null=False, default=None)
+    bronze = models.NullBooleanField(blank=True, null=False, default=None)
+    dark = models.NullBooleanField(blank=True, null=False, default=None)
+    modern = models.NullBooleanField(blank=True, null=False, default=None)
     hair = models.CharField(max_length=6000, null=False, blank=True)
     eyes = models.CharField(max_length=6000, null=False, blank=True)
     first_appearance = models.CharField(max_length=6000, null=False, blank=True)
