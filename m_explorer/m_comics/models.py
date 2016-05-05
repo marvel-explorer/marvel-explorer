@@ -27,9 +27,6 @@ class Comic(models.Model):
     def __str__(self):
         return self.title
 
-    class Meta:
-        ordering = ('read',)
-
 
 @python_2_unicode_compatible
 class ReadingList(models.Model):
@@ -40,9 +37,9 @@ class ReadingList(models.Model):
     owner = models.OneToOneField(settings.AUTH_USER_MODEL,
                                  on_delete=models.CASCADE,
                                  related_name='readinglist')
-    comics = models.ForeignKey(Comic, related_name='lists')
+    comics = models.ManyToManyField(Comic, related_name='lists')
     date_created = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.title
+        return str(self.owner)
