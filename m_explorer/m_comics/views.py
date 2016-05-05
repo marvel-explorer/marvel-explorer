@@ -15,9 +15,6 @@ class UserComicsCreate(generics.ListCreateAPIView):
     queryset = Comic.objects.all()
     serializer_class = ComicSerializer
 
-    def get_object(self):
-        return self.request.user.readinglist.comics
-
 
 class UserComicsUpdate(generics.RetrieveUpdateDestroyAPIView):
     authentication_classes = (authentication.TokenAuthentication,)
@@ -25,6 +22,3 @@ class UserComicsUpdate(generics.RetrieveUpdateDestroyAPIView):
 
     queryset = Comic.objects.all()
     serializer_class = ComicSerializer
-
-    def get_object(self):
-        return self.request.user.readinglist.comics
