@@ -3,17 +3,26 @@
 from ._s_results import s_results
 from ._api_results import api_results
 from django.core.management.base import BaseCommand, CommandError
+import os
+
+
+HERE = os.path.abspath(__file__)
+DATA_FILES_HOME = os.path.join(
+    os.path.dirname(os.path.dirname(os.path.dirname(HERE))),
+    'data_files'
+)
 
 
 def combine_results():
     """Combine two results lists."""
+    outfile_path = os.path.join(DATA_FILES_HOME, 'combined.txt')
     results = []
     for index, value in enumerate(api_results):
         result = value
         result.update(s_results[index])
         results.append(result)
         print(result)
-    combined = open("combined.py", "w")
+    combined = open(outfile_path, "w")
     combined.write(str(results))
     combined.close()
     return results
