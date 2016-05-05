@@ -12,17 +12,18 @@ class Comic(models.Model):
     """
     characters = models.ManyToManyField('questions.Character',
                                         related_name='comics')
-    marvel_id = models.IntegerField(primary_key=True)
+    marvel_id = models.CharField(max_length=20, primary_key=True)
     title = models.CharField(max_length=255)
     issue_number = models.PositiveIntegerField(default=0)
     description = models.CharField(max_length=1000, default='')
-    isbn = models.CharField(max_length=50, null=True)
+    upc = models.CharField(max_length=50, null=True)
     page_count = models.IntegerField(null=True)
-    url = models.URLField(max_length=255, null=True)
-    series = models.IntegerField(null=True)
-    purchase = models.URLField(max_length=255, null=True)
+    detail_url = models.URLField(max_length=255, null=True)
+    series = models.CharField(max_length=500, null=True)
+    purchase_url = models.URLField(max_length=255, null=True)
+    puchase_date = models.CharField(max_length=500, null=True)
     read = models.BooleanField(default=False)
-    purchase_date = models.CharField(max_length=50)
+    thumbnail = models.CharField(max_length=300, null=False, blank=True)
 
     def __str__(self):
         return self.title
