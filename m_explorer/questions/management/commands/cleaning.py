@@ -49,7 +49,19 @@ def power_clean(to_clean):
 def identity_clean(to_clean):
     """Clean powers."""
     if 'Identity' in to_clean:
-        to_clean['Identity'] = to_clean['Identity'][0].replace('u2019', "'")
+        i = to_clean['Identity'][0].replace('u2019', "'").lower()
+        if 'unknown' in i or "not known" in i:
+            to_clean['Identity'] = 'Secret'
+        elif "known to" in i:
+            a, b, c = 'government', 'officials', 'authorities'
+            if a in i or b in i or c in i:
+                to_clean['Identity'] = 'Known to Government'
+        elif 'secret' in i or 'unaware' in i:
+            to_clean['Identity'] = 'Secret'
+        elif 'known' in i or 'publicly' in i:
+            to_clean['Identity'] = 'Known to Public'
+        elif i != '':
+            to_clean['Identity'] = 'Secret'
     else:
         to_clean['Identity'] = ''
     return to_clean
