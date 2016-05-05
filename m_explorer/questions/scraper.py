@@ -21,7 +21,7 @@ CHARACTER = character_list('api_characters.txt')
 
 
 def get_page(character):
-    "Return content and encoding of desired page."
+    """Return content and encoding of desired page."""
     url = MARVEL_UNIVERSE_DOMAIN + character
     resp = requests.get(url)
     resp.raise_for_status
@@ -29,7 +29,7 @@ def get_page(character):
 
 
 def write_file(html, name):
-    "Write the response html to file"
+    """Write the response html to file."""
     file = open(name, "w")
     file.write(html.encode('ascii', 'ignore'))
     file.close()
@@ -53,7 +53,7 @@ def parse_source(html):
 def extract_marvel_u_data(html):
     """Extract div of correct id from marvl u."""
     log = open("search.log", "a")
-    div_finder = html.find('div', id='powerbox')  # May need to invoke alternate search
+    div_finder = html.find('div', id='powerbox')
     if div_finder:
         log.write("Found:{}.format\n".format(str(html.title)))
         return div_finder
@@ -143,7 +143,8 @@ def api_character_calls():
             offset = 0
             trip = False
             while not trip:
-                call = m.get_characters(nameStartsWith=letter, limit="5", offset=offset)
+                call = m.get_characters(nameStartsWith=letter, limit="5",
+                                        offset=offset)
                 try:
                     for char in call.data.results:
                         individual = {}
