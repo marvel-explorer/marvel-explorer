@@ -10,7 +10,7 @@ from .models import Comic
 
 class CreateUser(generics.ListCreateAPIView):
     authentication_classes = (authentication.TokenAuthentication,)
-    permission_classes = (permissions.IsAuthenticated, IsObjectOwner)
+    permission_classes = (permissions.IsAuthenticated, IsObjectOwner,)
 
     queryset = Comic.objects.all()
     serializer_class = ComicSerializer
@@ -21,7 +21,7 @@ class CreateUser(generics.ListCreateAPIView):
 
 class UserComics(generics.RetrieveUpdateDestroyAPIView):
     authentication_classes = (authentication.TokenAuthentication,)
-    permission_classes = (permissions.IsAuthenticated, IsObjectOwner)
+    permission_classes = (permissions.IsAuthenticated, IsObjectOwner,)
 
     queryset = Comic.objects.all()
     serializer_class = ComicSerializer
