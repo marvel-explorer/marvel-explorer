@@ -10,10 +10,10 @@ class CharacterSerializer(serializers.ModelSerializer):
         """Define fields to send."""
 
         model = Character
-        fields = ('marvel_id', 'name', 'real_name', 'description',
-                  'thumbnail', 'gender', 'pob', 'citizenship', 'occupation',
-                  'powers', 'total_comics', 'golden', 'silver', 'bronze',
-                  'dark', 'modern', 'hair', 'eyes', 'first_appearance',
-                  'identity_status', 'aliases', 'weight', 'height',
-                  'group_aff', 'paraphernalia', 'education', 'abilities',
-                  'weapons', 'origin')
+        fields = ('marvel_id', 'marvel_name', 'name', 'real_name',
+                  'description', 'thumbnail', 'gender', 'pob', 'citizenship',
+                  'occupation', 'powers', 'total_comics', 'golden', 'silver',
+                  'bronze', 'dark', 'modern', 'hair', 'eyes',
+                  'first_appearance', 'identity_status', 'aliases', 'weight',
+                  'height', 'group_aff', 'paraphernalia', 'education',
+                  'abilities', 'weapons', 'origin')

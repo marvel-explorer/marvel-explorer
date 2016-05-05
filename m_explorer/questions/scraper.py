@@ -4,8 +4,6 @@ from marvel.marvel import Marvel
 from api_results import api_results
 import requests
 import io
-import re
-import sys
 import os
 import os.path
 import string
