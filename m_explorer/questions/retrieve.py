@@ -24,6 +24,9 @@ def get_comics_by_character(character_id):
     return all_comics
 
 
+def
+
+
 def attach_character(c_dict):
     """Attach associated characters to a comic book entry."""
     c_list = c_dict.characters.items
@@ -74,8 +77,8 @@ def fill_the_db(cleaned):
             purchase_url=c['purchase_url'],
             purchase_date=c['purchase_date'],
             series=c['series'],
-            character=c['character'],
         )
+        comic.characters.add(*c['characters'])
         comic.save()
 
 

@@ -21,7 +21,7 @@ class Comic(models.Model):
     detail_url = models.URLField(max_length=255, null=True)
     series = models.CharField(max_length=500, null=True)
     purchase_url = models.URLField(max_length=255, null=True)
-    puchase_date = models.CharField(max_length=500, null=True)
+    puchase_date = models.DateTimeField(null=True)
     read = models.BooleanField(default=False)
     thumbnail = models.CharField(max_length=300, null=False, blank=True)
 
