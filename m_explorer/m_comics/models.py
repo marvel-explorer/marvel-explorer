@@ -18,10 +18,12 @@ class Comic(models.Model):
     description = models.CharField(max_length=1000, default='')
     upc = models.CharField(max_length=50, null=True)
     page_count = models.IntegerField(null=True)
+    _format = models.CharField(max_length=50, null=True)
     detail_url = models.URLField(max_length=255, null=True)
     series = models.CharField(max_length=500, null=True)
     purchase_url = models.URLField(max_length=255, null=True)
     puchase_date = models.DateTimeField(null=True)
+    str_pur_date = models.CharField(max_length=15, null=True)
     read = models.BooleanField(default=False)
     thumbnail = models.CharField(max_length=300, null=False, blank=True)
 

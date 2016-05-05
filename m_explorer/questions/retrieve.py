@@ -1,61 +1,80 @@
 from marvel.marvel import Marvel
+from dateutil import parser
 import os
 from m_comics.models import Comic
-from .model import Character
+from questions.models import Character
 
 
 def get_comics_by_character(character_id):
     """Return requests from marvel API for comic information."""
-    m = Marvel(os.enviorn.get("PUBLIC_KEY"), os.environ.get("PRIVATE_KEY"))
+    m = Marvel(os.environ.get("PUBLIC_KEY"), os.environ.get("PRIVATE_KEY"))
     offset = 0
-    comics = m.get_comics(characters=character_id, limit="100", format="comic",
-                          offset=offset)
+    all_comics = []
+    print('fetching comics data')
+    comics = m.get_comics(characters=character_id, limit="100", offset=offset)
+    print('api call completed')
     if comics.code != 200:
-        comics = m.get_comics(characters=character_id, limit="20",
-                              format="comic")
-        return [comics]
-    all_comics = [comics]
-    if comics.data.total <= 100:
+        print('backing off to 20 at a time')
+        comics = m.get_comics(characters=character_id, limit="20")
+        print('stopping fetching now')
+        if comics.code == 200:
+            all_comics.extend(comics.data.results)
+        return all_comics
+    all_comics.extend(comics.data.results)
+    if comics.data.total >= 100:
+        print('more to go')
         while comics.data.total > offset:
+            print('processed {} of {}'.format(offset, comics.data.total))
             offset += 100
             comics = m.get_comics(characters=character_id, limit="100",
-                                  format="comic", offset=offset)
-            all_comics.append(comics)
+                                  offset=offset)
+            if comics.code == 200:
+                all_comics.extend(comics.data.results)
     return all_comics
 
 
-def attach_character(c_dict):
+def attach_character(comic):
     """Attach associated characters to a comic book entry."""
-    c_list = c_dict.characters.items
+    c_list = comic.characters.items
     for char in c_list:
         char = char.resourceURI.split('/')[-1]
     queryset = Character.objects.filter(marvel_id__in=c_list)
     return queryset
 
 
+def convert_date(date):
+    """Create and apply the date from the database."""
+    strdate = date.dict['date']
+    dt = parser.parse(strdate)
+    dtstring = str(dt.year) + '-' + str(dt.month) + '_' + str(dt.day)
+    return dt, dtstring
+
+
 def prep_comics(all_comics):
     """Return preped comics for entry to db."""
     sorted_comics = []
-    for batch in all_comics:
-        for comic in batch.data.results:
-            c_dict = {}
-            c_dict['marvel_id'] = comic.id
-            c_dict['title'] = comic.title
-            c_dict['issue_number'] = comic.issueNumber
-            c_dict['description'] = comic.description
-            c_dict['upc'] = comic.upc
-            c_dict['page_count'] = comic.pageCount
-            for url in comic.urls:
-                if url['type'] == 'detail':
-                    c_dict['detail_url'] = url.url
-                elif url['type'] == 'purchase':
-                    c_dict['purchase_url'] = url.url
-            for date in comic.dates:
-                if date['type'] == 'onsaleDate':
-                    c_dict['purchase_date'] = date.date
-            c_dict['series'] = comic.series
-            c_dict['characters'] = attach_character(c_dict)
-            sorted_comics.append(c_dict)
+    for comic in all_comics:
+        c_dict = {}
+        c_dict['marvel_id'] = comic.id
+        c_dict['title'] = comic.title
+        c_dict['issue_number'] = comic.issueNumber
+        c_dict['description'] = comic.description
+        c_dict['upc'] = comic.upc
+        c_dict['page_count'] = comic.pageCount
+        c_dict['format'] = comic.format
+        for url in comic.urls:
+            if url['type'] == 'detail':
+                c_dict['detail_url'] = url['url']
+            elif url['type'] == 'purchase':
+                c_dict['purchase_url'] = url['url']
+        for date in comic.dates:
+            if date.type == 'onsaleDate':
+                dt, dtstring = convert_date(date)
+                c_dict['purchase_date'] = dt
+                c_dict['str_pur_date'] = dtstring
+        c_dict['series'] = comic.series
+        c_dict['characters'] = attach_character(comic)
+        sorted_comics.append(c_dict)
     return sorted_comics
 
 
@@ -70,9 +89,11 @@ def fill_the_db(cleaned):
             issue_number=c['issue_number'],
             page_count=c['page_count'],
             upc=c['upc'],
+            _format=c['format'],
             detail_url=c['detail_url'],
             purchase_url=c['purchase_url'],
             purchase_date=c['purchase_date'],
+            str_pur_date=c['str_pur_date'],
             series=c['series'],
         )
         comic.characters.add(*c['characters'])

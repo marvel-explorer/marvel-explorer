@@ -22,6 +22,7 @@ parts/
 sdist/
 var/
 bin/
+py2env/
 pip-selfcheck.json
 pyvenv.cfg
 *.egg-info/
