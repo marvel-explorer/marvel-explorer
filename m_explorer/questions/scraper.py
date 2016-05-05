@@ -69,7 +69,7 @@ def extract_marvel_u_data(html):
 
 def marvel_u_call(character):
     """Initial controller for call before tag isolation."""
-    # if len(sys.argv) > 1 and sys.argv[1] == 'test':
+    # if len(sys.argv) > 1 and sys.argv[1] == 'test':  
     #     html = load_page(character + '.html')
     # else:
     html, encoding = get_page(character)
@@ -115,11 +115,24 @@ def div_components_marvelu(html):
     return div_dict
 
 
+def charc_dict_build(char):
+    """Takes a character and retruns a dict for the character."""
+    individual = {}
+    api = open("api_characters.txt", "a")
+    if char.comics.available != 0:
+        api.write("{}\n".format(char.name.encode('ascii', 'ignore')))
+        individual.setdefault('marvel_name', []).append(char.name)
+        individual.setdefault('marvel_id', []).append(char.id)
+        individual.setdefault('total_comics', []).append(char.comics.available)
+        individual.setdefault('description', []).append(char.description)
+        individual.setdefault('thumbnail', []).append(char.thumbnail)
+        return individual
+
+
 def api_character_calls():
     """Call character lists from marvel."""
     m = Marvel(os.environ.get('PUBLIC_KEY'), os.environ.get('PRIVATE_KEY'))
     log = open("api.log", "a")
-    api = open("api_characters.txt", "a")
     calls = string.letters[26:]
     dict_list = []
     for letter in calls:
@@ -129,15 +142,8 @@ def api_character_calls():
             log.write("Code Status:{}:\n".format(call.code))
             log.write("Total:{}:\n".format(call.data.total))
             for char in call.data.results:
-                individual = {}
-                if char.comics.available != 0:
-                    api.write("{}\n".format(char.name.encode('ascii', 'ignore')))
-                    individual.setdefault('marvel_name', []).append(char.name)
-                    individual.setdefault('marvel_id', []).append(char.id)
-                    individual.setdefault('total_comics', []).append(char.comics.available)
-                    individual.setdefault('description', []).append(char.description)
-                    individual.setdefault('thumbnail', []).append(char.thumbnail)
-                    dict_list.append(individual)
+                individual = charc_dict_build(char)
+                dict_list.append(individual)
         except KeyError:
             log.write("failed:{} - SERVER ERROR\n".format(letter))
             offset = 0
@@ -147,15 +153,8 @@ def api_character_calls():
                                         offset=offset)
                 try:
                     for char in call.data.results:
-                        individual = {}
-                        if char.comics.available != 0:
-                            api.write("{}\n".format(char.name.encode('ascii', 'ignore')))
-                            individual.setdefault('marvel_name', []).append(char.name)
-                            individual.setdefault('marvel_id', []).append(char.id)
-                            individual.setdefault('total_comics', []).append(char.comics.available)
-                            individual.setdefault('description', []).append(char.description)
-                            individual.setdefault('thumbnail', []).append(char.thumbnail)
-                            dict_list.append(individual)
+                        individual = charc_dict_build(char)
+                        dict_list.append(individual)
                     if offset > call.data.total:
                         trip = True
                 except KeyError:
