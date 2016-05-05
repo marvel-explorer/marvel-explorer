@@ -10,11 +10,11 @@ class ComicSerializer(serializers.ModelSerializer):
                   'characters',
                   'issue_number',
                   'description',
-                  'isbn',
+                  'upc',
                   'page_count',
-                  'url',
+                  'detail_url',
                   'series',
-                  'purchase',
+                  'purchase_url',
                   'read',
                   'purchase_date')
 
