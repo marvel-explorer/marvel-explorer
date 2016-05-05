@@ -1,21 +1,19 @@
-from .serializers import ComicSerializer, ReadingListSerializer
+from .serializers import ComicSerializer
 from rest_framework import permissions
 from m_profile.permissions import IsObjectOwner
-from rest_framework import authentication
-from rest_framework import viewsets
+from rest_framework import (
+    authentication,
+    generics,
+    )
+from .models import Comic
 
 
-class ComicViewSet(viewsets.ModelViewSet):
-    """
-    Comprehensive viewset for Comics, providing list, create, retrieve,
-    update and destroy actions.
-    """
-    serializer_class = ComicSerializer
+class UserComics(generics.ListCreateAPIView):
     authentication_classes = (authentication.TokenAuthentication,)
     permission_classes = (permissions.IsAuthenticated, IsObjectOwner)
 
-    def perform_create(self, serializer):
-        serializer.save(owner=self.request.user)
+    queryset = Comic.objects.all()
+    serializer_class = ComicSerializer
 
-    def get_queryset(self):
-        return self.request.user.comics.all()
+    # def get_object(self):
+    #     return .objects.get(pk=self.request.user.pk)

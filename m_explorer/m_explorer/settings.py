@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'm_profile.apps.MProfileConfig',
-    'm_comics',
+    'm_comics.apps.MComicsConfig',
     'questions.apps.QuestionsConfig',
     'corsheaders',
 ]
