@@ -8,7 +8,7 @@ from rest_framework import (
 from .models import Comic
 
 
-class CreateUser(generics.ListCreateAPIView):
+class UserComicsCreate(generics.ListCreateAPIView):
     authentication_classes = (authentication.TokenAuthentication,)
     permission_classes = (permissions.IsAuthenticated, IsObjectOwner,)
 
@@ -19,7 +19,7 @@ class CreateUser(generics.ListCreateAPIView):
         return self.request.user.readinglist.comics
 
 
-class UserComics(generics.RetrieveUpdateDestroyAPIView):
+class UserComicsUpdate(generics.RetrieveUpdateDestroyAPIView):
     authentication_classes = (authentication.TokenAuthentication,)
     permission_classes = (permissions.IsAuthenticated, IsObjectOwner,)
 
