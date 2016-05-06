@@ -62,7 +62,8 @@ class Membership(models.Model):
     )
     readinglist = models.ForeignKey(
         ReadingList,
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        related_name='list_membership'
     )
     read = models.BooleanField(default=False)
 
