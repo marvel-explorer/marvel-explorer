@@ -15,7 +15,7 @@ class Comic(models.Model):
         related_name='comics'
     )
     marvel_id = models.IntegerField(primary_key=True)
-    title = models.CharField(max_length=255)
+    title = models.CharField(max_length=255, null=True)
     issue_number = models.PositiveIntegerField(default=0)
     description = models.CharField(max_length=1000, default='')
     upc = models.CharField(max_length=50, null=True)
@@ -55,6 +55,7 @@ class ReadingList(models.Model):
         return str(self.owner)
 
 
+@python_2_unicode_compatible
 class Membership(models.Model):
     comic = models.ForeignKey(
         Comic,
@@ -65,3 +66,6 @@ class Membership(models.Model):
         on_delete=models.CASCADE
     )
     read = models.BooleanField(default=False)
+
+    def __str__(self):
+        return str(self.read)

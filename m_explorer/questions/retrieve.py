@@ -119,11 +119,11 @@ def fill_the_db(cleaned):
             str_pur_date=c['str_pur_date'],
             series=c['series'],
         )
-        # comic.characters.add(*c['characters'])
-        import pdb; pdb.set_trace()
+        comic.characters.add(*c['characters'])
+        # import pdb; pdb.set_trace()
         comic.save()
 
-
+    
 def api_call(character_id):
     """Api to db entry main function."""
     # import pdb; pdb.set_trace()
