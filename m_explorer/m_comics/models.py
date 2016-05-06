@@ -17,7 +17,7 @@ class Comic(models.Model):
     marvel_id = models.IntegerField(primary_key=True)
     title = models.CharField(max_length=255, null=True)
     issue_number = models.PositiveIntegerField(default=0)
-    description = models.CharField(max_length=1000, null=True)
+    description = models.CharField(max_length=10000, null=True)
     upc = models.CharField(max_length=50, null=True)
     page_count = models.IntegerField(null=True)
     _format = models.CharField(max_length=50, null=True)

@@ -23,11 +23,12 @@ class GetHeros(generics.ListAPIView):
 
 class ComicsByHeroAPIView(generics.ListAPIView):
     """Get Character's comics by their primary key"""
+    serializer_class = ComicSerializer
 
     def get(self, request, *args, **kwargs):
-        # serializer = ComicSerializer
         character = Character.objects.filter(marvel_id=kwargs['pk'])[0]
         comics = character.comics.all()
         if len(comics) < character.total_comics:
             api_call(kwargs['pk'])
-        return Response({'comics': comics})
+        self.queryset = character.comics.all()
+        return self.list(request, *args, **kwargs)
