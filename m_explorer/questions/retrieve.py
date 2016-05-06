@@ -1,3 +1,4 @@
+"""Comic book retrieval module."""
 from marvel.marvel import Marvel
 from dateutil import parser
 import os
@@ -126,7 +127,7 @@ def fill_the_db(cleaned):
         comic.save()
         comic.characters.add(*c['characters'])
 
-    
+
 def api_call(character_id):
     """Api to db entry main function."""
     all_comics = get_comics_by_character(character_id)
