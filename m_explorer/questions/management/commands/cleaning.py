@@ -320,7 +320,8 @@ def cleaning_dicts(to_clean):
         d = name_clean(d)
         d = gender(d)
         cleaned.append(d)
-    clean_log = open("cleaned.py", "w")
+    outfile_path = os.path.join(DATA_FILES_HOME, 'cleaned.txt')
+    clean_log = open(outfile_path, "w")
     clean_log.write(str(cleaned))
     clean_log.close()
     return cleaned
