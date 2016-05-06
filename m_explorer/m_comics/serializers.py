@@ -23,7 +23,8 @@ class ComicSerializer(serializers.ModelSerializer):
             'detail_url',
             'series',
             'purchase_url',
-            'purchase_date'
+            'purchase_date',
+            'thumbnail'
         )
 
 

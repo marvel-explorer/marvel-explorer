@@ -30,5 +30,5 @@ class ComicsByHeroAPIView(generics.ListAPIView):
         comics = character.comics.all()
         if len(comics) < character.total_comics:
             api_call(kwargs['pk'])
-        self.queryset = character.comics.all()
+        self.queryset = character.comics.all().order_by('issue_number')
         return self.list(request, *args, **kwargs)
