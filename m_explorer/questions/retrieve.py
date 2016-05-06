@@ -36,9 +36,11 @@ def get_comics_by_character(character_id):
 def attach_character(comic):
     """Attach associated characters to a comic book entry."""
     c_list = comic.characters.items
+    new_list = []
     for char in c_list:
         char = char.resourceURI.split('/')[-1]
-    queryset = Character.objects.filter(marvel_id__in=c_list)
+        new_list.append(char)
+    queryset = Character.objects.filter(marvel_id__in=new_list)
     return queryset
 
 
@@ -119,8 +121,8 @@ def fill_the_db(cleaned):
             str_pur_date=c['str_pur_date'],
             series=c['series'],
         )
+        import pdb; pdb.set_trace()
         comic.characters.add(*c['characters'])
-        # import pdb; pdb.set_trace()
         comic.save()
 
     
