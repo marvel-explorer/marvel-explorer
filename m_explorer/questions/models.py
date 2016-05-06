@@ -1,3 +1,4 @@
+"""Character model module."""
 from __future__ import unicode_literals
 from django.utils.encoding import python_2_unicode_compatible
 from django.db import models
@@ -19,6 +20,7 @@ class CharacterManager(models.Manager):
 @python_2_unicode_compatible
 class Character(models.Model):
     """Create Character Stats model for the database."""
+
     name = models.CharField(max_length=6000, null=False, blank=True)
     real_name = models.CharField(max_length=100, null=False, blank=True)
     marvel_name = models.CharField(max_length=100, null=False, blank=True)
