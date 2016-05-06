@@ -2,7 +2,7 @@
 """Clean the scrapper and API results."""
 from ._s_results import s_results
 from ._api_results import api_results
-from django.core.management.base import BaseCommand, CommandError
+from django.core.management.base import BaseCommand
 import os
 
 
@@ -14,7 +14,7 @@ DATA_FILES_HOME = os.path.join(
 
 
 def combine_results():
-    """Combine two results lists."""
+    """Combine api and scrape results lists."""
     outfile_path = os.path.join(DATA_FILES_HOME, 'combined.txt')
     results = []
     for index, value in enumerate(api_results):
@@ -56,7 +56,7 @@ def power_clean(to_clean):
 
 
 def identity_clean(to_clean):
-    """Clean powers."""
+    """Clean identities."""
     if 'Identity' in to_clean:
         i = to_clean['Identity'][0].replace('u2019', "'").lower()
         if 'unknown' in i or "not known" in i:
@@ -77,7 +77,7 @@ def identity_clean(to_clean):
 
 
 def real_name_clean(to_clean):
-    """Clean powers."""
+    """Clean the real name."""
     if 'Real Name' in to_clean:
         to_clean['Real Name'] = to_clean['Real Name'][0].replace('u2019', "'")
     else:
@@ -86,7 +86,7 @@ def real_name_clean(to_clean):
 
 
 def group_aff_clean(to_clean):
-    """Clean powers."""
+    """Clean groups affiliations."""
     if 'Group Affiliation' in to_clean:
         to_clean['Group Affiliation'] = to_clean['Group Affiliation'][0].replace('u2019', "'")
     else:
@@ -95,7 +95,7 @@ def group_aff_clean(to_clean):
 
 
 def paraph_clean(to_clean):
-    """Clean powers."""
+    """Clean paraphenalia category."""
     if 'Paraphernalia' in to_clean:
         to_clean['Paraphernalia'] = to_clean['Paraphernalia'][0].replace('u2019', "'")
     else:
@@ -104,7 +104,7 @@ def paraph_clean(to_clean):
 
 
 def education_clean(to_clean):
-    """Clean powers."""
+    """Clean education."""
     if 'Education' in to_clean:
         to_clean['Education'] = to_clean['Education'][0].replace('u2019', "'")
     else:
@@ -113,7 +113,7 @@ def education_clean(to_clean):
 
 
 def ability_clean(to_clean):
-    """Clean powers."""
+    """Clean abilities category."""
     if 'Abilities' in to_clean:
         to_clean['Abilities'] = to_clean['Abilities'][0].replace('u2019', "'")
     else:
@@ -122,7 +122,7 @@ def ability_clean(to_clean):
 
 
 def weapons_clean(to_clean):
-    """Clean powers."""
+    """Clean weapons."""
     if 'Weapons' in to_clean:
         to_clean['Weapons'] = to_clean['Weapons'][0].replace('u2019', "'")
     else:
@@ -131,7 +131,7 @@ def weapons_clean(to_clean):
 
 
 def origin_clean(to_clean):
-    """Clean powers."""
+    """Clean origin stories."""
     if 'Origin' in to_clean:
         to_clean['Origin'] = to_clean['Origin'][0].replace('u2019', "'")
     else:
@@ -149,7 +149,7 @@ def alias_clean(to_clean):
 
 
 def weight_clean(to_clean):
-    """Clean aliases."""
+    """Clean weights."""
     if 'Weight' in to_clean:
         if 0 < len(to_clean['Weight'][0]) < 9:
             new_weight = to_clean['Weight'][0][:3]
@@ -204,7 +204,7 @@ def first_app_clean(to_clean):
 
 
 def hair_clean(to_clean):
-    """Clean height."""
+    """Clean hair."""
     if 'Hair' in to_clean:
         if '(' in to_clean['Hair'][0]:
             to_clean['Hair'] = 'Varies'
@@ -226,7 +226,7 @@ def eyes_clean(to_clean):
 
 
 def citizenship(to_clean):
-    """Clean eyes."""
+    """Clean citizenship."""
     if 'Citizenship' in to_clean:
         c = to_clean['Citizenship'][0].split(" ")
         if c[0][:5] == "U.S.A" or c[0] == "U.S." or c[0] == "USA":
@@ -367,9 +367,12 @@ def fill_the_db(cleaned):
 
 
 class Command(BaseCommand):
+    """Define custom command class."""
+
     help = 'Loads characters into database'
 
     def handle(self, *args, **options):
+        """Create custom handle function for character db entry."""
         full_dict_list = combine_results()
         clean = cleaning_dicts(full_dict_list)
         fill_the_db(clean)
