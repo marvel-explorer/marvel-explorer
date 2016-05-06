@@ -26,7 +26,6 @@ class Comic(models.Model):
     purchase_url = models.URLField(max_length=255, null=True)
     purchase_date = models.DateTimeField(null=True)
     str_pur_date = models.CharField(max_length=15, null=True)
-    read = models.BooleanField(default=False)
     thumbnail = models.CharField(max_length=300, null=False, blank=True)
 
     def __str__(self):

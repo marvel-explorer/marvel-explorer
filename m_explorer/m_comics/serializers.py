@@ -2,9 +2,16 @@ from .models import Comic, ReadingList, Membership
 from rest_framework import serializers
 
 
+class MembershipSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Membership
+        fields = ('read')
+
+
 class ComicSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comic
+        groups = MembershipSerializer(source='membership_set', many=True)
         fields = (
             'marvel_id',
             'title',
@@ -16,7 +23,6 @@ class ComicSerializer(serializers.ModelSerializer):
             'detail_url',
             'series',
             'purchase_url',
-            'read',
             'purchase_date'
         )
 
@@ -28,11 +34,6 @@ class ReadingListSerializer(serializers.ModelSerializer):
             'owner',
             'comics',
             'date_created',
-            'last_modified'
+            'last_modified',
+            'read'
         )
-
-
-class MembershipSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Membership
-        fields = ('id', 'read')
