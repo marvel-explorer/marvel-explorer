@@ -21,14 +21,13 @@ class UserComicsCreate(generics.ListCreateAPIView):
         return Comic.objects.filter(readinglist__owner__exact=user)
 
     def create(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
         # import pdb; pdb.set_trace()
-        comic = serializer.save()
+        comic_id = request.data['marvel_id']
+        comic_id = int(comic_id)
+        comic = Comic.objects.filter(marvel_id=comic_id)[0]
         m1 = Membership(comic=comic, readinglist=request.user.readinglist)
         m1.save()
-        headers = self.get_success_headers(serializer.data)
-        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+        return Response(status=status.HTTP_201_CREATED)
 
 
 class UserComicsUpdate(generics.RetrieveUpdateDestroyAPIView):

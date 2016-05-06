@@ -19,3 +19,6 @@ An interactive exploration of the marvel universe.
 * We utilized the Marvel API for this project.
     #### API found here:
     * http://developer.marvel.com
+
+All content provide by Marvel:
+Data provided by [Marvel](http://marvel.com). © 2016 MARVEL
