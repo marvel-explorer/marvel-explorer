@@ -70,7 +70,7 @@ class NewComicTestCase(TestCase):
 
     def test_default_or_null_fields(self):
         self.assertEquals(self.testcomic1.detail_url, None)
-        self.assertEquals(self.testcomic1.description, '')
+        self.assertEquals(self.testcomic1.description, None)
         self.assertEquals(self.testcomic1.purchase_url, None)
         self.assertEquals(self.testcomic2.str_pur_date, None)
         self.assertEquals(self.testcomic2.upc, None)
