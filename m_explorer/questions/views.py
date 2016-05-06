@@ -17,7 +17,7 @@ class GetRandom20(generics.ListAPIView):
 class GetHeros(generics.ListAPIView):
     """Send JSON of all characters."""
 
-    queryset = Character.objects.all()
+    queryset = Character.objects.all().order_by('?')
     serializer_class = CharacterSerializer
 
 
