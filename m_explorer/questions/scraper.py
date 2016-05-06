@@ -69,9 +69,6 @@ def extract_marvel_u_data(html):
 
 def marvel_u_call(character):
     """Initial controller for call before tag isolation."""
-    # if len(sys.argv) > 1 and sys.argv[1] == 'test':  
-    #     html = load_page(character + '.html')
-    # else:
     html, encoding = get_page(character)
     doc = parse_source(html.decode(encoding))
     doc = extract_marvel_u_data(doc)
@@ -116,7 +113,7 @@ def div_components_marvelu(html):
 
 
 def charc_dict_build(char):
-    """Takes a character and retruns a dict for the character."""
+    """Return a dict for a given character."""
     individual = {}
     api = open("api_characters.txt", "a")
     if char.comics.available != 0:
