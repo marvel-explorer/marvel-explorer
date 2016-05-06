@@ -10,7 +10,7 @@ from retrieve import api_call
 class GetRandom20(generics.ListAPIView):
     """Send JSON of a random 20 characters."""
 
-    queryset = Character.objects.all().exclude(powers='').order_by('?')
+    queryset = Character.objects.all().exclude(powers='').order_by('?')[:20]
     serializer_class = CharacterSerializer
 
 

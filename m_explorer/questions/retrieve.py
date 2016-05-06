@@ -46,15 +46,34 @@ def convert_date(date):
     """Create and apply the date from the database."""
     strdate = date.dict['date']
     dt = parser.parse(strdate)
-    dtstring = str(dt.year) + '-' + str(dt.month) + '_' + str(dt.day)
+    dtstring = str(dt.year) + '-' + str(dt.month) + '-' + str(dt.day)
     return dt, dtstring
+
+
+def set_blanks():
+    """Create an empty dictionary to catch holes."""
+    c_dict = {}
+    c_dict['title'] = ''
+    c_dict['issue_number'] = ''
+    c_dict['description'] = ''
+    c_dict['thumbnail'] = ''
+    c_dict['upc'] = ''
+    c_dict['page_count'] = ''
+    c_dict['format'] = ''
+    c_dict['purchase_url'] = ''
+    c_dict['detail_url'] = ''
+    c_dict['purchase_url'] = ''
+    c_dict['purchase_date'] = None
+    c_dict['str_pur_date'] = ''
+    c_dict['series'] = ''
+    return c_dict
 
 
 def prep_comics(all_comics):
     """Return preped comics for entry to db."""
     sorted_comics = []
     for comic in all_comics:
-        c_dict = {}
+        c_dict = set_blanks()
         c_dict['marvel_id'] = comic.id
         c_dict['title'] = comic.title
         c_dict['issue_number'] = comic.issueNumber
@@ -73,6 +92,9 @@ def prep_comics(all_comics):
                 dt, dtstring = convert_date(date)
                 c_dict['purchase_date'] = dt
                 c_dict['str_pur_date'] = dtstring
+        if 'purchase_date' not in c_dict:
+            c_dict['purchase_date'] = None
+            c_dict['str_pur_date'] = ''
         c_dict['series'] = comic.series
         c_dict['characters'] = attach_character(comic)
         sorted_comics.append(c_dict)
@@ -97,7 +119,8 @@ def fill_the_db(cleaned):
             str_pur_date=c['str_pur_date'],
             series=c['series'],
         )
-        comic.characters.add(*c['characters'])
+        # comic.characters.add(*c['characters'])
+        import pdb; pdb.set_trace()
         comic.save()
 
 
