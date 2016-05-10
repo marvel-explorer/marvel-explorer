@@ -46,7 +46,7 @@ Aurora
 Avalanche
 Avengers
 Avengers (Ultimate)
-Azazel (Mutant)
+Azazel (mutant)
 Banshee
 Banshee (Theresa Rourke)
 Baron Strucker
@@ -54,7 +54,7 @@ Baron Zemo (Heinrich Zemo)
 Baron Zemo (Helmut Zemo)
 Barracuda
 Bastion
-Batroc the Leaper
+Batroc
 Battering Ram
 Beak
 Beast
@@ -842,4 +842,6 @@ Zarda
 Zodiak
 Zombie (Simon Garth)
 Zuras
+Zzzax
+uras
 Zzzax
