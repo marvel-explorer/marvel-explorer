@@ -5,7 +5,8 @@ __pycache__/
 
 # C extensions
 *.so
-
+*.DS_Store
+share/
 # Distribution / packaging
 .Python
 env/
@@ -21,11 +22,14 @@ parts/
 sdist/
 var/
 bin/
+py2env/
 pip-selfcheck.json
 pyvenv.cfg
 *.egg-info/
 .installed.cfg
 *.egg
+secrets.sh
+secret.sh
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
