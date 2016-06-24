@@ -3,7 +3,7 @@ from .models import Character
 from .serializers import CharacterSerializer
 from rest_framework import generics
 from m_comics.serializers import ComicSerializer
-from retrieve import api_call
+from .retrieve import api_call
 
 
 class GetRandom20(generics.ListAPIView):
