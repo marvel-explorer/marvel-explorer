@@ -1,4 +1,4 @@
-"""Scrapper to produce character information."""
+"""Scraper to produce character information."""
 from bs4 import BeautifulSoup
 from marvel.marvel import Marvel
 from api_results import api_results
