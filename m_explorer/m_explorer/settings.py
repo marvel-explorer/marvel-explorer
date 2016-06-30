@@ -26,7 +26,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY", "notsecretatall")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['.us-west-2.compute.amazonaws.com', 'localhost']
 
 # Application definition
 INSTALLED_APPS = [
